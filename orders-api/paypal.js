@@ -1,8 +1,7 @@
 import fetch from "node-fetch";
-import "dotenv/config";
+import "dotenv/config"; // loads env variables from .env file
 
 const { CLIENT_ID, APP_SECRET } = process.env;
-
 const base = "https://api-m.sandbox.paypal.com";
 
 export async function createOrder() {
@@ -10,6 +9,10 @@ export async function createOrder() {
   const url = `${base}/v2/checkout/orders`;
   const response = await fetch(url, {
     method: "post",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${accessToken}`,
+    },
     body: JSON.stringify({
       intent: "CAPTURE",
       purchase_units: [
@@ -21,10 +24,6 @@ export async function createOrder() {
         },
       ],
     }),
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${accessToken}`,
-    },
   });
   const data = await response.json();
   console.log(data);
