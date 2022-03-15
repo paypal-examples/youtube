@@ -22,37 +22,15 @@ code {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .App-body {
   text-align: center;
-  background: radial-gradient(
-    circle,
-    rgba(238, 174, 202, 1) 0%,
-    rgba(148, 187, 233, 1) 100%
-  );
-  /* background: linear-gradient(to right, #009fff, #ec2f4b); */
-  /* background: linear-gradient(to right, #ffefba, #ffffff); */
-  /* background: linear-gradient(to left, #005aa7, #fffde4); */
-  /* background: radial-gradient(circle, #fffde4, #005aa7); */
-  /* background: radial-gradient(circle, #ffffff, #ffefba); */
-  /* background: radial-gradient(circle, #009fff, #ec2f4b); */
-
+  background: linear-gradient(to bottom, #005aa7, #fffde4);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: 20px;
   color: #1a1a1a;
 }
 

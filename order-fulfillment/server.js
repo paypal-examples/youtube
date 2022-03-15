@@ -32,7 +32,7 @@ async function fulfillOrder(email) {
   const ebook = await readFile(__dirname + "/ebook.pdf", {
     encoding: "base64",
   });
-  await /* or return */ sendgrid.send({
+  await sendgrid.send({
     // and we'll pass in an object which is going to have a bunch of prperties
     // first to, which takes our passed in email
     to: email,
