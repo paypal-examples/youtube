@@ -28,27 +28,20 @@ app.post("/api/orders/:orderID/capture", async (req, res) => {
 });
 
 async function fulfillOrder(email) {
-  // TODO: cache this so we don't read it each time
-  const ebook = await readFile(__dirname + "/ebook.pdf", {
+  const ebook = await readFile("./ebook.pdf", {
     encoding: "base64",
   });
   await sendgrid.send({
-    // and we'll pass in an object which is going to have a bunch of prperties
-    // first to, which takes our passed in email
     to: email,
-    // from which will be your send grid approved email address
     from: "developer@paypal.com",
     subject: "PayPal Developer E-Book",
     text: "Attached is your e-book. Please enjoy!",
-    // and then the attachment, so that's a property called attachments
-    // which takes an array
     attachments: [
       {
-        content: ebook, // the first thing that object needs is something called content
-        // which is the
         filename: "ebook.pdf",
         type: "application/pdf",
         disposition: "attachment",
+        content: ebook,
       },
     ],
   });
