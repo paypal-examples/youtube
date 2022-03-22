@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Ensures optimal rendering on mobile devices -->
+    <link href="<%= url('/styles.css') %>" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    
+    <img src="https://cdn-ssl.s7.disneystore.com/is/image/DisneyShopping/6101047623485"
+    width="300" 
+    height="300"
+    />
+    <p>$5.00</p>
+
+    <script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script>
+
+
+    <div id="paypal-button-container"></div>
+    
+    
+    <script>
+      paypal.Buttons({
+
+        createOrder: function(data, actions) {
+          return actions.order.create({
+            purchase_units: [{
+              amount: {
+                value: '10.00'
+              }
+            }]
+          });
+        },
+
+        onApprove: function(data, actions) {
+          return actions.order.capture().then(function(orderData) {
+
+                console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+                var transaction = orderData.purchase_units[0].payments.captures[0];
+                alert('Transaction '+ transaction.status + ': ' + transaction.id + '\n\nSee console for all available details');
+
+          });
+        }
+      }).render('#paypal-button-container');
+
+    </script>
+  </body>
+</html>
