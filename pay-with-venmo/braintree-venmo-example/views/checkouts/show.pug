@@ -1,0 +1,14 @@
+extends ../layout
+
+block content
+  .wrapper: .response.container: .content
+    if result && result.message
+      .icon
+        img(src="/images/#{result.icon}.svg" alt="")
+
+      h1=result.header
+      section
+        p= result.message
+    else
+      section
+        p Success

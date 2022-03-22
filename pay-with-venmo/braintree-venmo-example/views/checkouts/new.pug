@@ -1,0 +1,30 @@
+extends ../layout
+
+block content
+  .wrapper: .checkout.container: .content
+    header
+      <img src="https://www.ikea.com/us/en/images/products/fejka-artificial-potted-plant-with-pot-indoor-outdoor-succulent__0614211_pe686835_s5.jpg?f=s" class="center" width=350 height=350>
+
+    form#payment-form(action="/checkouts", method="post")
+      section
+        label(for="amount")
+          span.input-label Amount
+          .input-wrapper.amount-wrapper
+            input#amount(name="amount" type="tel" min="1" value="5.00")
+
+        .bt-drop-in-wrapper
+        
+          #bt-dropin
+
+      input#nonce(type="hidden" name="payment_method_nonce")
+      button.button(type="submit")
+        span Submit
+
+  span(hidden id="client-token")=clientToken
+
+  script(src="https://js.braintreegateway.com/web/dropin/1.33.0/js/dropin.min.js")
+  script(type="text/javascript", src="/javascript/example.js")
+  script(src="https://js.braintreegateway.com/web/3.85.2/js/client.min.js")
+  script(src="https://js.braintreegateway.com/web/3.85.2/js/paypal-checkout.min.js")
+  script(src="https://js.braintreegateway.com/web/3.85.2/js/venmo.min.js")
+  script(src="https://js.braintreegateway.com/web/3.85.2/js/data-collector.min.js")

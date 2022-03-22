@@ -1,0 +1,21 @@
+doctype html
+html
+  head
+    title Braintree-Venmo Example
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    link(rel="stylesheet", href="/stylesheets/app.css")
+    link(rel="stylesheet", href="/stylesheets/overrides.css")
+  body
+    header.main
+      .container.wide
+        .content.slim
+          .set
+  
+
+      .notice-wrapper
+        if messages && messages.length > 0
+          .show.notice.error.notice-error
+            for msg in messages
+              span.notice-message= msg.msg
+
+    block content
