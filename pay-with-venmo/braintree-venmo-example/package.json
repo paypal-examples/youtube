@@ -1,0 +1,49 @@
+{
+  "name": "braintree_express_example",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "run-p watch:*",
+    "predev": "prettier --write .",
+    "start": "node ./bin/www",
+    "test": "jest --config=jest.config.json",
+    "test:unit": "jest --testPathIgnorePatterns **/__tests__/**.integration.js",
+    "test:integration": "jest **/__tests__/**.integration.js",
+    "watch:server": "DEBUG=\"braintree_example:*\" nodemon bin/www"
+  },
+  "devDependencies": {
+    "eslint": "^8.1.0",
+    "eslint-config-braintree": "^5.0.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "jest": "^27.3.1",
+    "jest-runner-eslint": "^1.0.0",
+    "nodemon": "^2.0.14",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.4.1",
+    "supertest": "^6.1.6"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "braintree": "^3.7.0",
+    "connect-flash": "~0.1.1",
+    "debug": "^4.3.2",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "http-errors": "^1.8.0",
+    "less-middleware": "^3.1.0",
+    "morgan": "^1.10.0",
+    "morgan-debug": "^2.0.0",
+    "pug": "^3.0.2",
+    "serve-favicon": "^2.5.0"
+  },
+  "engines": {
+    "node": ">=12"
+  },
+  "browserslist": [
+    "last 2 version",
+    "> 2%",
+    "ie 11"
+  ]
+}
