@@ -19,7 +19,7 @@ export async function setupCardFields() {
     // setup our submit handler to handle the checkout
     cardForm.addEventListener("submit", async (event) => {
       event.preventDefault();
-      await checkout(cardFields).catch(err => {
+      await checkout(cardFields).catch((err) => {
         alert("Payment could not be captured! " + JSON.stringify(err));
       });
     });
@@ -72,12 +72,31 @@ async function checkout(cardFields) {
     cardholderName: cardholderName.value,
     billingAddress: {
       postalCode: postalCode.value,
-      countryCodeAlpha2: countryCode.value
+      countryCodeAlpha2: countryCode.value,
     },
   });
 
   // once the order has all the neccessary info we can call capture
-  await api.captureOrder(orderId);
+  const orderData = await api.captureOrder(orderId);
+
+  // recoverable errors
+  const errorDetail = Array.isArray(orderData.details) && orderData.details[0];
+  if (errorDetail && errorDetail.issue === "INSTRUMENT_DECLINED") {
+    return alert("Please try a different funding source.");
+    // See: https://developer.paypal.com/docs/checkout/standard/customize/handle-funding-failures/
+  }
+
+  // unrecoverable errors
+  if (errorDetail) {
+    let msg = "Sorry, your transaction could not be processed.";
+    if (errorDetail.description) {
+      msg += "\n\n" + errorDetail.description;
+    }
+    if (orderData.debug_id) {
+      msg += " (" + orderData.debug_id + ")";
+    }
+    return alert(msg); // Show a failure message
+  }
 
   // show a success message or redirect
   window.location = "/?success";
