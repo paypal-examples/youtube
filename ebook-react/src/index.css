@@ -15,7 +15,3 @@ code {
 .App-body {
   text-align: center;
 }
-
-.App-body > img {
-  box-shadow: -5px 2px 3px 3px #1843d2cf, 5px 5px 5px 0px #ffffff;
-}

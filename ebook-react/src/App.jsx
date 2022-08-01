@@ -4,7 +4,7 @@ import "./App.css";
 function App() {
   return (
     <div className="App-body">
-      <h1>How to be Great at Anything (E-Book)</h1>
+      <h1>PayPal Developer E-Book</h1>
       <img
         height="300"
         src="/ebook.jpg"
