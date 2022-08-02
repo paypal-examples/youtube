@@ -67,7 +67,14 @@ paypal
 
       data.amount.value = valueWithShipping;
 
-      // Doing this works, but will lose the breakdown property
+      console.log("Updating amount to", data.amount)
+
+      // TODO: update tax amount (including line item breakdown) based on shipping address
+      // const taxAmount = getTaxesForAddress(data.shipping.address);
+      // data.amount.breakdown.tax_total = taxAmount;
+      // data.amount.value += taxAmount;
+
+      // Doing this also works, but you will lose the breakdown property
       // const amount = {
       //   value: valueWithShipping,
       //   currency_code: data.amount.currency_code,
