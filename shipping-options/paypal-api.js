@@ -21,14 +21,24 @@ export async function createOrder() {
       purchase_units: [
         {
           amount: {
-            value: "15.00",
+            value: "18.00",
             currency_code: "USD",
+            breakdown: {
+              item_total: {
+                value: "15.00",
+                currency_code: "USD",
+              },
+              shipping: {
+                value: "3.00",
+                currency_code: "USD",
+              },
+            },
           },
           shipping: {
             options: [
               {
                 id: "SHIP_123",
-                label: "Standard Shipping",
+                label: "Standard Shipping (3-Day)",
                 type: "SHIPPING",
                 selected: true,
                 amount: {
@@ -37,9 +47,9 @@ export async function createOrder() {
                 },
               },
               {
-                id: "SHIP_456",
-                label: "Pick up in Store",
-                type: "PICKUP",
+                id: "FREE_99",
+                label: "Free Shipping (7-Day)",
+                type: "SHIPPING",
                 selected: false,
                 amount: {
                   value: "0.00",
@@ -122,26 +132,6 @@ export async function updateOrder(orderId, shippingOption) {
         path: "/purchase_units/@reference_id=='default'/amount",
         value,
       },
-      // The patch call accepts an arrray, which can execute multiple
-      // commands with a single request:
-      //
-      //   {
-      //     op: "add",
-      //     path: "/purchase_units/@reference_id=='default'/shipping/address",
-      //     value: {
-      //       address_line_1: "1235 Townsend St",
-      //       address_line_2: "Floor 6",
-      //       admin_area_2: "Sacramento",
-      //       admin_area_1: "CA",
-      //       postal_code: "11099",
-      //       country_code: "US",
-      //     },
-      //   },
-      //   {
-      //     op: "add",
-      //     path: "/purchase_units/@reference_id=='default'/invoice_id",
-      //     value: "03012022-3303-01",
-      //   },
     ]),
   });
 

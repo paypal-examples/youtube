@@ -6,14 +6,24 @@ paypal
         purchase_units: [
           {
             amount: {
-              value: "15.00",
+              value: "18.00",
               currency_code: "USD",
+              breakdown: {
+                item_total: {
+                  value: "15.00",
+                  currency_code: "USD",
+                },
+                shipping: {
+                  value: "3.00",
+                  currency_code: "USD",
+                },
+              },
             },
             shipping: {
               options: [
                 {
                   id: "SHIP_123",
-                  label: "Standard Shipping",
+                  label: "Standard Shipping (3-Day)",
                   type: "SHIPPING",
                   selected: true,
                   amount: {
@@ -22,9 +32,9 @@ paypal
                   },
                 },
                 {
-                  id: "SHIP_456",
-                  label: "Pick up in Store",
-                  type: "PICKUP",
+                  id: "FREE_99",
+                  label: "Free Shipping (7-Day)",
+                  type: "SHIPPING",
                   selected: false,
                   amount: {
                     value: "0.00",
@@ -35,7 +45,7 @@ paypal
             },
           },
         ],
-      })
+      });
 
       // When creating an order on the server:
       //
@@ -47,21 +57,28 @@ paypal
       //     console.log(response);
       //     return response.id;
       //   });
-
     },
-
 
     onShippingChange: function (data, actions) {
       const baseAmount = "15.00";
-      const valueWithShipping = parseFloat(baseAmount) + parseFloat(data.selected_shipping_option.amount.value);
-      const value = { value: valueWithShipping, currency_code: data.amount.currency_code };
+      const valueWithShipping =
+        parseFloat(baseAmount) +
+        parseFloat(data.selected_shipping_option.amount.value);
+
+      data.amount.value = valueWithShipping;
+
+      // Doing this works, but will lose the breakdown property
+      // const amount = {
+      //   value: valueWithShipping,
+      //   currency_code: data.amount.currency_code,
+      // };
 
       // returns a promise to tell the popup when the update is complete
       return actions.order.patch([
         {
           op: "replace",
           path: "/purchase_units/@reference_id=='default'/amount",
-          value,
+          value: data.amount,
         },
       ]);
 
@@ -76,7 +93,6 @@ paypal
       //     shippingOption: data.selected_shipping_option
       //   })
       // })
-
     },
 
     // Finalize the transaction after payer approval
