@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PayPal Advanced Checkout Integration</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="App-body">
+      <p class="App-alert">Thank you for your order.</p>
+      <img
+        height="600"
+        class="book"
+        src="/ebook.jpg"
+        alt="Build Apps with PayPal (Book Cover)"
+      />
+      <p>Price: <span class="book-price">$13.99</span></p>
+      <form action="/checkout" method="get">
+        <button type="submit">🛒 Checkout</button>
+      </form>
+    </div>
+    <script>
+      if ((new URLSearchParams(location.search)).has("success")) {
+        document.querySelector(".App-alert").classList.add("App-alert__show");
+      }
+    </script>
+  </body>
+</html>

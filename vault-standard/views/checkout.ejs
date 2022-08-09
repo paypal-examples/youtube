@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/style.css" />
+    <script
+      src="https://www.paypal.com/sdk/js?components=buttons&client-id=<%= clientId %>"
+      data-user-id-token="<%= clientToken %>"
+    ></script>
+  </head>
+
+  <body>
+    <div class="row row-checkout">
+      <div class="col-product">
+        <h2>Build Apps with PayPal (E-Book)</h2>
+        <p>By PayPal Developer Relations</p>
+        <p class="checkout-total">$13.99</p>
+        <img
+          height="480"
+          class="book"
+          src="/ebook.jpg"
+          alt="Build Apps with PayPal (Book Cover)"
+        />
+      </div>
+      <div class="col-form">
+        <div id="paypal-button-container" class="paypal-button-container"></div>
+    </div>
+    <script src="app.js" type="module"></script>
+  </body>
+</html>
