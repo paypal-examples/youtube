@@ -10,13 +10,7 @@ An example donate form using the React components for the PayPal JS SDK.
 
 ## Setup
 
-### 1. Clone or download the [code in this repo](https://github.com/prophen/paypal-donate-button-react).
-
-![animation showing where to clone or download the code](public/clone-or-download.gif)
-
-> 💡 &nbsp; [Git Guide on the 'git clone' command](https://github.com/git-guides/git-clone)
-
-### 2. Navigate to the app directory and install the dependencies
+### 1. Navigate to the app directory and install the dependencies
 
 ```
 cd paypal-donate-button-react
@@ -36,7 +30,7 @@ npm install
 yarn
 ```
 
-### 3. Start the app
+### 2. Start the app
 
 **Start with npm**
 
