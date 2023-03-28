@@ -12,7 +12,7 @@ paypal
     },
     // Sets up the transaction when a payment button is clicked
     createOrder(data, actions) {
-      return api.createOrder();
+      return api.createOrder().id;
     },
     // Finalize the transaction after payer approval
     async onApprove(data, actions) {
